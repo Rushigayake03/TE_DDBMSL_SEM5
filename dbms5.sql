@@ -50,10 +50,36 @@ RIGHT JOIN orders o
 ON c.customer_id = o.customer_id;
 
 
-SELECT c.customer_id, c.first_name, o.order_id, o.amount
-FROM customer c
-FULL OUTER JOIN orders o
-ON c.customer_id = o.customer_id;
+-- SELECT c.customer_id, c.first_name, o.order_id, o.amount
+-- FROM customer c
+-- FULL OUTER JOIN orders o
+-- ON c.customer_id = o.customer_id;
+
+-- Emulating FULL OUTER JOIN using UNION of LEFT JOIN and RIGHT JOIN
+
+SELECT
+    C.customer_id,
+    C.first_name,
+    O.Order_id,
+    O.amount
+FROM
+    Customer C
+LEFT JOIN
+    Orders O ON C.customer_id = O.customer_id
+
+UNION ALL
+
+SELECT
+    C.customer_id,
+    C.first_name,
+    O.Order_id,
+    O.amount
+FROM
+    Customer C
+RIGHT JOIN
+    Orders O ON C.customer_id = O.customer_id
+WHERE
+    C.customer_id IS NULL;
 
 
 SELECT c.customer_id, c.first_name, o.order_id, o.amount
