@@ -41,3 +41,18 @@ db.employees.find({
 db.employees.find({ salary: { $not: { $gt: 40000 } } })
 
 
+
+// Increase salary by 5000 for employees from IT or Finance dept
+db.employees.updateMany(
+  { $or: [ { dept: "IT" }, { dept: "Finance" } ] },
+  { $inc: { salary: 5000 } }
+)
+
+
+// Delete employees from HR dept AND salary less than 30000
+db.employees.deleteMany({ 
+  $and: [ { dept: "HR" }, { salary: { $lt: 30000 } } ] 
+})
+
+
+
