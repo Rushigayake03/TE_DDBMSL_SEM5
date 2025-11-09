@@ -1,0 +1,35 @@
+PROBLEM STATEMENT : Implement Map reduces operation with suitable example using MongoDB.
+
+
+
+// Step 1: Use a database
+use salesDB
+
+// Step 2: Create collection and insert data
+db.sales.insertMany([
+  { cust_id: "C1", amount: 250, status: "A" },
+  { cust_id: "C2", amount: 450, status: "A" },
+  { cust_id: "C1", amount: 300, status: "B" },
+  { cust_id: "C3", amount: 500, status: "A" },
+  { cust_id: "C2", amount: 150, status: "B" }
+])
+
+// Step 3: Define MAP function
+var mapFunction = function() {
+    emit(this.cust_id, this.amount);
+};
+
+// Step 4: Define REDUCE function
+var reduceFunction = function(key, values) {
+    return Array.sum(values);
+};
+
+// Step 5: Execute MapReduce
+db.sales.mapReduce(
+    mapFunction,
+    reduceFunction,
+    { out: "total_sales" }
+)
+
+// Step 6: Display output collection
+db.total_sales.find().pretty()

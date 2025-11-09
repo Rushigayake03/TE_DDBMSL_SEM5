@@ -1,0 +1,43 @@
+PROBLEM STATEMENT: Develop MongoDB Queries using Logical operators within 
+CRUD Operations – $and , $or, $nor, $not
+
+
+
+// Step 1: Switch to or create database
+use employeeDB
+
+// Step 2: Create collection
+db.createCollection("employees")
+
+// Step 3: Insert sample data
+db.employees.insertMany([
+  { eid: 1, name: "Kunal", dept: "HR", salary: 35000, age: 24 },
+  { eid: 2, name: "Riya", dept: "IT", salary: 60000, age: 27 },
+  { eid: 3, name: "Amit", dept: "Finance", salary: 50000, age: 29 },
+  { eid: 4, name: "Sara", dept: "IT", salary: 40000, age: 23 },
+  { eid: 5, name: "Neha", dept: "HR", salary: 28000, age: 21 }
+])
+
+
+// Employees from IT dept AND salary > 45000
+db.employees.find({ 
+  $and: [ { dept: "IT" }, { salary: { $gt: 45000 } } ] 
+})
+
+
+// Employees from HR OR having salary < 40000
+db.employees.find({ 
+  $or: [ { dept: "HR" }, { salary: { $lt: 40000 } } ] 
+})
+
+
+// Employees NOT from IT dept NOR salary > 50000
+db.employees.find({ 
+  $nor: [ { dept: "IT" }, { salary: { $gt: 50000 } } ] 
+})
+
+
+// Employees whose salary is NOT greater than 40000
+db.employees.find({ salary: { $not: { $gt: 40000 } } })
+
+
