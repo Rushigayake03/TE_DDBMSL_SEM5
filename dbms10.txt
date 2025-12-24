@@ -1,0 +1,33 @@
+PROBLEM STATEMENT:
+Develop MongoDB Queries using CRUD operations.
+
+
+STEP 1 -> sudo systemctl start mongod
+STEP 2 -> sudo systemctl enable mongod
+STEP 3 -> mongosh(TO START MONGO SHELL)
+
+
+use studentDB
+
+db.createCollection("students")
+
+db.students.insertMany([
+  { rollno: 1, name: "Kunal", dept: "CS", marks: 85 },
+  { rollno: 2, name: "Riya", dept: "IT", marks: 92 },
+  { rollno: 3, name: "Amit", dept: "ENTC", marks: 78 },
+  { rollno: 4, name: "Sara", dept: "CS", marks: 88 }
+])
+
+print("All Documents:")
+printjson(db.students.find().toArray())
+
+db.students.updateOne({ rollno: 3 }, { $set: { marks: 82 } })
+db.students.updateMany({ dept: "CS" }, { $inc: { marks: 5 } })
+
+print("After Updates:")
+printjson(db.students.find().toArray())
+
+db.students.deleteOne({ rollno: 4 })
+
+print("After Deletion:")
+printjson(db.students.find().toArray())
