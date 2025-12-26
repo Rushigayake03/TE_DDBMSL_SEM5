@@ -3,7 +3,7 @@
 📚 **Database Management Systems (DBMS) Practical Repository**  
 This repository contains the SQL solutions and practical files for the **DBMS Laboratory (SEM-5)** course followed by Third Year Computer Engineering students at **Savitribai Phule Pune University (SPPU)**.
 
-This project was created by **Kunal Jambhale** and a classmate to help SPPU students easily access and refer to practical solutions during lab sessions and practical examinations.
+This project was created by **Kunal Jambhale** and **Rushikesh Gayake** so that students can easily access and refer to practical solutions during lab sessions and practical examinations.
 
 ---
 
@@ -46,5 +46,6 @@ To run these SQL scripts:
 1. **Clone the repository**  
    ```bash
    git clone https://github.com/kunaljambhale06/TE_DDBMSL_SEM5.git
+
 
 
